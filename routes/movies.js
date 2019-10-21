@@ -6,18 +6,27 @@ let movies = db.collection('movies');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
+  let movie_list = []
+
   movies.get().then(snapshop => {
     snapshop.forEach(movie => {
-      console.log(movie);
+      movie_list.push(movie.data());
     })
+
+    res.status(200).json({
+      message: "success",
+      data: movie_list
+    });
   }).catch(err => {
     console.log("Error getting movies", err);
+    res.status(500).json({
+      message: err
+    })
   })
-  res.send('Movies List');
 });
 
 router.post('/', function (req, res, next) {
-  movies.add({ id: 1, title: "Some title" }).then(function () {
+  movies.add({ id: req.body.id, title: req.body.title }).then(function () {
     res.status(200).json({
       message: "Movie Created"
     })

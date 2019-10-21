@@ -19,11 +19,28 @@ describe('App Endpoints', () => {
     })
 
     it('Should add a new movie to database', async () => {
+        let new_movie_id = Math.floor(Math.random() * 10);
+        let movie_titles = [
+            'Avangers',
+            'Black Panther',
+            'Zombies',
+            'Zombies 2',
+            'Zombies 3',
+            'Avangers II',
+            'Black Panther IV',
+            'Zombies IX',
+            'Zombies IXX',
+            'Zombies IXXX'
+        ]
+
         const res = await request(app).post('/movies').send({
-            id: 1,
-            title: "Movie name"
+            id: new_movie_id,
+            title: movie_titles[new_movie_id]
         })
 
         expect(res.statusCode).toEqual(200)
+        expect(res.body).toMatchObject({
+            message: "Movie Created"
+        })
     })
 })
