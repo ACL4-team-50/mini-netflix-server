@@ -17,4 +17,13 @@ describe('App Endpoints', () => {
         const res = await request(app).get('/movies')
         expect(res.statusCode).toEqual(200)
     })
+
+    it('Should add a new movie to database', async () => {
+        const res = await request(app).post('/movies').send({
+            id: 1,
+            title: "Movie name"
+        })
+
+        expect(res.statusCode).toEqual(200)
+    })
 })
