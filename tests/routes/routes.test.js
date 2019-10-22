@@ -19,7 +19,6 @@ describe('App Endpoints', () => {
     })
 
     it('Should add a new movie to database', async () => {
-        let new_movie_id = Math.floor(Math.random() * 10);
         let movie_titles = [
             'Avangers',
             'Black Panther',
@@ -32,6 +31,8 @@ describe('App Endpoints', () => {
             'Zombies IXX',
             'Zombies IXXX'
         ]
+
+        let new_movie_id = Math.floor(Math.random() * 10);
 
         const res = await request(app).post('/movies').send({
             id: new_movie_id,
