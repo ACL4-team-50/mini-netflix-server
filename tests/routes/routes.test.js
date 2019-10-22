@@ -32,7 +32,7 @@ describe('App Endpoints', () => {
             'Zombies IXXX'
         ]
 
-        let new_movie_id = Math.floor(Math.random() * 10);
+        let new_movie_id = Math.floor(Math.random() * movie_titles.length);
 
         const res = await request(app).post('/movies').send({
             id: new_movie_id,
